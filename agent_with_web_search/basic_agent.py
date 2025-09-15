@@ -64,7 +64,6 @@ class BasicAgent:
     
     def create_simple_agent(self, prompt: str = "You are a helpful assistant."):
         try:
-            # Update prompt if web search is enabled
             if self.enable_web_search and self.tools:
                 prompt = "You are a helpful assistant with access to web search. When users ask for current information, search for recent data and provide accurate, up-to-date responses. When you use web search tools, you MUST include the full URLs from the search results in your response. Do not just mention source names - include the complete URLs."
             
@@ -80,7 +79,6 @@ class BasicAgent:
     
     def create_agent_with_memory(self, prompt: str = "You are a helpful assistant. Remember our conversation history."):
         try:
-            # Update prompt if web search is enabled
             if self.enable_web_search and self.tools:
                 prompt = "You are a helpful assistant with access to web search and memory. When users ask for current information, search for recent data and provide accurate, up-to-date responses. When you use web search tools, you MUST include the full URLs from the search results in your response. Do not just mention source names - include the complete URLs. Remember our conversation history."
             
@@ -141,10 +139,8 @@ class BasicAgent:
         else:
             self.enable_web_search = enable
         
-        # Re-setup tools with new configuration
         self._setup_tools()
         
-        # Recreate agent if it exists
         if self.agent:
             if self.memory:
                 self.create_agent_with_memory()
@@ -173,27 +169,21 @@ def main():
     print("=" * 50)
     
     try:
-        # Test without web search first
         print("\n1. Basic Agent (no web search):")
         agent = BasicAgent()
         agent.create_simple_agent()
         response = agent.safe_invoke("Hello! Explain AI in one sentence.")
         print(f"Agent: {response}")
-        
-        # Test with web search enabled
         print("\n2. Agent with Web Search:")
         agent_with_search = BasicAgent(enable_web_search=True)
         agent_with_search.create_agent_with_memory()
         
-        # Test current information query
         response1 = agent_with_search.chat_with_memory("What are the latest developments in AI this week?", "user_123")
         print(f"Agent: {response1}")
         
-        # Test news search
         response2 = agent_with_search.chat_with_memory("Find recent news about renewable energy investments", "user_123")
         print(f"Agent: {response2}")
         
-        # Show agent status
         print("\n3. Agent Status:")
         status = agent_with_search.get_agent_status()
         for key, value in status.items():

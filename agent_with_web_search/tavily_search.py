@@ -128,7 +128,6 @@ class TavilySearchHandler:
             return f"Q&A search error: {str(e)}"
 
 
-# LangChain Tools for integration with agents
 @tool
 def web_search(query: str, max_results: int = 5) -> str:
     """
@@ -219,7 +218,6 @@ def quick_answer(question: str) -> str:
         return f"Quick answer error: {str(e)}"
 
 
-# Get all available tools
 def get_search_tools() -> List:
     """Get all available search tools for use with LangGraph agents."""
     return [web_search, search_news, get_current_info, quick_answer]
@@ -233,7 +231,6 @@ def main():
     try:
         handler = TavilySearchHandler()
         
-        # Test basic search
         print("\n1. Basic Web Search:")
         response = handler.search("latest AI developments 2024", max_results=3)
         if "error" not in response:
@@ -242,12 +239,10 @@ def main():
                 print(f"   {item.get('content', 'No content')[:150]}...")
                 print(f"   Source: {item.get('url', 'No URL')}\n")
         
-        # Test news search
         print("\n2. News Search:")
         news_results = handler.search_news("renewable energy investments", days=30)
         print(news_results[:300] + "..." if len(news_results) > 300 else news_results)
         
-        # Test Q&A search
         print("\n3. Q&A Search:")
         answer = handler.qna_search("What is the current status of quantum computing?")
         print(answer)
