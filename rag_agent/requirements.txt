@@ -1,0 +1,15 @@
+langchain
+langgraph
+langchain-google-genai
+langchain-openai
+langchain-community
+langchain-core
+python-dotenv
+openai
+pandas
+google-generativeai
+faiss-cpu
+numpy
+scikit-learn
+jq
+pypdf

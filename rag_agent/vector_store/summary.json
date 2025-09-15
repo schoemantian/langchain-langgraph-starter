@@ -1,0 +1,15 @@
+{
+  "total_documents": 5,
+  "total_chunks": 524,
+  "embedding_model": "models/embedding-001",
+  "chunk_size": 1000,
+  "chunk_overlap": 200,
+  "files_processed": [
+    "knowledge_base/2509.10147v1.pdf",
+    "knowledge_base/2509.10222v1.pdf",
+    "knowledge_base/2509.10423v1.pdf",
+    "knowledge_base/2509.10401v1.pdf",
+    "knowledge_base/2509.10297v1.pdf"
+  ],
+  "created_at": "2025-09-15T16:33:45.917683"
+}
